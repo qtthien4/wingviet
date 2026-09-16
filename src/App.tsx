@@ -103,9 +103,9 @@ function Home({ navigate }: { navigate: (p: Page) => void }) {
           <p className="intro">From intricate handicrafts to premium dried foods, we source and export the best of Vietnam. Explore our main categories below or contact us for specific sourcing requests.</p>
           <p><a className="btn-outline small" href={routes.products} onClick={(e) => { e.preventDefault(); navigate('products') }}>View All Products ›</a></p>
           <div className="cat-grid">
-            <a href={`${routes.products}#handicrafts`} onClick={(e) => { e.preventDefault(); navigate('products') }}><img src="/assets/anh-nay-tao-them-mot-vai-loai-thu-cong-khac-nhu-gao-dua-coc-tre-ong-hut-tre-do-vat-may-tre-dan-.png" alt="Handicrafts" /><h3>Handicrafts</h3></a>
-            <a href={`${routes.products}#dried-goods`} onClick={(e) => { e.preventDefault(); navigate('products') }}><img src="/assets/Gemini_Generated_Image_vo332bvo332bvo33.png" alt="Dried Goods" /><h3>Dried Goods</h3></a>
-            <a href={`${routes.products}#custom-sourcing`} onClick={(e) => { e.preventDefault(); navigate('products') }}><img src="/assets/Untitled-design.png" alt="Custom Sourcing" /><h3>Custom Sourcing</h3></a>
+            <a href={`${routes.products}#handicrafts`} onClick={(e) => { e.preventDefault(); navigate('products') }}><img src="/assets/anh-nay-tao-them-mot-vai-loai-thu-cong-khac-nhu-gao-dua-coc-tre-ong-hut-tre-do-vat-may-tre-dan-.webp" alt="Handicrafts" loading="lazy" decoding="async" /><h3>Handicrafts</h3></a>
+            <a href={`${routes.products}#dried-goods`} onClick={(e) => { e.preventDefault(); navigate('products') }}><img src="/assets/Gemini_Generated_Image_vo332bvo332bvo33.webp" alt="Dried Goods" loading="lazy" decoding="async" /><h3>Dried Goods</h3></a>
+            <a href={`${routes.products}#custom-sourcing`} onClick={(e) => { e.preventDefault(); navigate('products') }}><img src="/assets/Untitled-design.webp" alt="Custom Sourcing" loading="lazy" decoding="async" /><h3>Custom Sourcing</h3></a>
           </div>
         </div>
       </section>
@@ -119,7 +119,7 @@ function Home({ navigate }: { navigate: (p: Page) => void }) {
             <a className="btn-outline small" href={routes.about} onClick={(e) => { e.preventDefault(); navigate('about') }}>Read More ›</a>
           </div>
           <div className="about-collage">
-            <img className="main" src="/assets/Untitled-design-1-1024x576.png" alt="Wingviet sourcing partner" />
+            <img className="main" src="/assets/Untitled-design-1-1024x576.webp" alt="Wingviet sourcing partner" loading="lazy" decoding="async" />
           </div>
         </div>
         <div className="wrap-narrow">
@@ -136,7 +136,7 @@ function Home({ navigate }: { navigate: (p: Page) => void }) {
           <p className="eyebrow">How we work</p>
           <h2>Quality &amp; Reliability In Every Step.</h2>
           <p className="intro">Our process is built on transparency and a “customer-first” approach. We act as your dedicated team in Vietnam, managing the entire sourcing journey from producer verification and negotiation to final quality inspection and logistics. We handle the complexity so you can receive high-quality Vietnamese goods with confidence.</p>
-          <div className="process-photo"><img src="/assets/Gemini_Generated_Image_cxgpbqcxgpbqcxgp.png" alt="Wingviet warehouse and quality team" /></div>
+          <div className="process-photo"><img src="/assets/Gemini_Generated_Image_cxgpbqcxgpbqcxgp.webp" alt="Wingviet warehouse and quality team" loading="lazy" decoding="async" /></div>
           <ul className="check-grid">
             {['Detailed Client Consultation', 'Strategic Producer Sourcing', 'Rigorous Quality Control', 'Production Monitoring', 'Full-Service Logistics', 'Transparent Communication'].map((s) => (
               <li key={s}><span className="tick">✓</span>{s}</li>
@@ -163,7 +163,7 @@ function About({ navigate }: { navigate: (p: Page) => void }) {
             <p>Our ‘customer-first’ principle is our compass. We are built on a foundation of trust, dedicating ourselves to understanding your exact needs and ensuring every detail is met. We are more than just an exporter; we are your on-the-ground partners.</p>
             <p>We leverage our deep local expertise to find the best producers, negotiate on your behalf, and manage all sourcing complexities. Quality is not just a final check; it’s our process. We ensure reliability through rigorous producer verification, on-site monitoring, and strict quality control from start to finish.</p>
           </div>
-          <img className="rounded" src="/assets/Gemini_Generated_Image_7cchla7cchla7cch-edited.png" alt="Vietnamese market and products" />
+          <img className="rounded" src="/assets/Gemini_Generated_Image_7cchla7cchla7cch-edited.webp" alt="Vietnamese market and products" loading="lazy" decoding="async" />
         </div>
       </section>
       <section className="section tint">
@@ -176,7 +176,7 @@ function About({ navigate }: { navigate: (p: Page) => void }) {
       </section>
       <section className="section split">
         <div className="wrap-narrow split-row">
-          <img className="rounded founder-photo" src="/assets/7ede6fff3802b45ced13_preview_rev_1-1-300x163.png" alt="Le Thi Hai Yen, Founder and CEO" />
+          <img className="rounded founder-photo" src="/assets/7ede6fff3802b45ced13_preview_rev_1-1-300x163.webp" alt="Le Thi Hai Yen, Founder and CEO" loading="lazy" decoding="async" />
           <div>
             <p className="eyebrow">A message from our founder</p>
             <h2>A Message From Our Founder</h2>
@@ -204,7 +204,7 @@ function Products({ navigate }: { navigate: (p: Page) => void }) {
       </section>
       <section className="product-block tint" id="handicrafts">
         <div className="wrap-narrow split-row">
-          <img className="rounded" src="/assets/Gemini_Generated_Image_sgap81sgap81sgap-1-edited-1.png" alt="Vietnamese Handicrafts" />
+          <img className="rounded" src="/assets/Gemini_Generated_Image_sgap81sgap81sgap-1-edited-1.webp" alt="Vietnamese Handicrafts" loading="lazy" decoding="async" />
           <div>
             <p className="eyebrow num">01.</p>
             <h2>Vietnamese Handicrafts</h2>
@@ -215,7 +215,7 @@ function Products({ navigate }: { navigate: (p: Page) => void }) {
       </section>
       <section className="product-block" id="dried-goods">
         <div className="wrap-narrow split-row">
-          <img className="rounded" src="/assets/Gemini_Generated_Image_29y1ve29y1ve29y1-edited.png" alt="Dried Goods and Spices" />
+          <img className="rounded" src="/assets/Gemini_Generated_Image_29y1ve29y1ve29y1-edited.webp" alt="Dried Goods and Spices" loading="lazy" decoding="async" />
           <div>
             <p className="eyebrow num">02.</p>
             <h2>Dried Goods &amp; Spices</h2>
@@ -226,7 +226,7 @@ function Products({ navigate }: { navigate: (p: Page) => void }) {
       </section>
       <section className="product-block tint" id="custom-sourcing">
         <div className="wrap-narrow split-row">
-          <img className="rounded" src="/assets/Gemini_Generated_Image_6j89ha6j89ha6j89-edited.png" alt="Custom Sourcing" />
+          <img className="rounded" src="/assets/Gemini_Generated_Image_6j89ha6j89ha6j89-edited.webp" alt="Custom Sourcing" loading="lazy" decoding="async" />
           <div>
             <p className="eyebrow num">03.</p>
             <h2>Custom Sourcing</h2>
