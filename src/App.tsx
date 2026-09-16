@@ -241,21 +241,49 @@ function Products({ navigate }: { navigate: (p: Page) => void }) {
 }
 
 /* ----------------------------- CONTACT ----------------------------- */
+type SendState = 'idle' | 'sending' | 'sent' | 'error'
+
 function Contact() {
-  const MAX_MAILTO_CHARS = 1500
-  const submit = (e: FormEvent<HTMLFormElement>) => {
+  const [status, setStatus] = useState<SendState>('idle')
+  const [errorMsg, setErrorMsg] = useState('')
+  const key = import.meta.env.VITE_WEB3FORMS_KEY as string | undefined
+  const submit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault()
-    const data = new FormData(e.currentTarget)
-    const name = String(data.get('name') ?? '').slice(0, 100)
-    const email = String(data.get('email') ?? '').slice(0, 254)
-    const subject = String(data.get('subject') ?? '').slice(0, 120)
-    const message = String(data.get('message') ?? '').slice(0, MAX_MAILTO_CHARS)
-    const href = `mailto:yen@wingviet.info.vn?subject=${encodeURIComponent(`[${subject}] Sourcing enquiry from ${name}`)}&body=${encodeURIComponent(`Name: ${name}\nEmail: ${email}\n\n${message}`)}`
-    if (href.length > 2000) {
-      alert('Your message is too long for email. Please shorten it and try again.')
+    const form = e.currentTarget
+    const data = new FormData(form)
+    const name = String(data.get('name') ?? '').trim().slice(0, 100)
+    const email = String(data.get('email') ?? '').trim().slice(0, 254)
+    const subject = String(data.get('subject') ?? '').trim().slice(0, 120) || 'Sourcing enquiry'
+    const message = String(data.get('message') ?? '').trim().slice(0, 1500)
+    if (!name || !email || !message) return
+    if (!key || key === 'PASTE_YOUR_KEY_HERE') {
+      location.href = `mailto:yen@wingviet.info.vn?subject=${encodeURIComponent(`[${subject}] Sourcing enquiry from ${name}`)}&body=${encodeURIComponent(`Name: ${name}\nEmail: ${email}\n\n${message}`)}`
       return
     }
-    location.href = href
+    try {
+      setStatus('sending')
+      setErrorMsg('')
+      const res = await fetch('https://api.web3forms.com/submit', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
+        body: JSON.stringify({
+          access_key: key,
+          name,
+          email,
+          subject: `[${subject}] Sourcing enquiry from ${name}`,
+          message: `Name: ${name}\nEmail: ${email}\n\n${message}`,
+          from_name: 'Wingviet Website',
+          replyto: email,
+        }),
+      })
+      const json = (await res.json()) as { success?: boolean, message?: string }
+      if (!json.success) throw new Error(json.message || 'Send failed')
+      form.reset()
+      setStatus('sent')
+    } catch (err) {
+      setStatus('error')
+      setErrorMsg(err instanceof Error ? err.message : 'Send failed')
+    }
   }
   return (
     <>
@@ -280,14 +308,17 @@ function Contact() {
               <h2>Send Us A Message</h2>
               <p>Please fill out the form below with your sourcing requirements. We will review your request and a member of our team will contact you shortly.</p>
               <form className="contact-form" onSubmit={submit}>
+                <input type="checkbox" name="botcheck" style={{ display: 'none' }} tabIndex={-1} autoComplete="off" />
                 <label>Name<input name="name" required maxLength={100} /></label>
                 <label>Email<input name="email" type="email" required maxLength={254} /></label>
                 <label>Subject<input name="subject" maxLength={120} /></label>
                 <label>Comment or Message<textarea name="message" required maxLength={1500} /></label>
-                <button className="btn-solid" type="submit">Submit</button>
+                <button className="btn-solid" type="submit" disabled={status === 'sending'}>{status === 'sending' ? 'Sending…' : 'Submit'}</button>
               </form>
+              {status === 'sent' && <p role="status" style={{ color: 'var(--c0)', marginTop: 12 }}>Thank you! Your message has been sent. We will reply within one business day.</p>}
+              {status === 'error' && <p role="alert" style={{ color: '#b3261e', marginTop: 12 }}>Could not send: {errorMsg}. Please email us directly at yen@wingviet.info.vn.</p>}
             </div>
-            <iframe className="map" title="Wingviet location" src="https://maps.google.com/maps?q=1%20183%2C%20T%E1%BB%95%2047%2C%20Th%E1%BB%9Bi%20An%2C%20H%E1%BB%93%20Ch%C3%AD%20Minh%2C%20Vietnam&t=&z=15&ie=UTF8&iwloc=&output=embed" loading="lazy" referrerPolicy="no-referrer-when-downgrade" sandbox="allow-scripts allow-same-origin allow-popups allow-popups-to-escape-sandbox" />
+            <iframe className="map" title="Wingviet location" src="https://maps.google.com/maps?q=10.8939027,106.678932&t=&z=17&ie=UTF8&iwloc=&output=embed" loading="lazy" referrerPolicy="no-referrer-when-downgrade" sandbox="allow-scripts allow-same-origin allow-popups allow-popups-to-escape-sandbox" />
           </div>
         </div>
       </section>

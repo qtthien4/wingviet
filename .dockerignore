@@ -1,0 +1,13 @@
+node_modules
+dist
+dist-ssr
+.git
+.env
+.env.local
+.env.*.local
+.yarn
+.commandcode
+*.log
+npm-debug.log*
+Dockerfile
+.dockerignore

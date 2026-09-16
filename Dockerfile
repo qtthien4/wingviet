@@ -1,3 +1,16 @@
+# ---- build ----
+FROM node:24-alpine AS build
+WORKDIR /app
+
+COPY package.json package-lock.json ./
+RUN npm ci
+
+COPY . .
+ARG VITE_WEB3FORMS_KEY=PASTE_YOUR_KEY_HERE
+ENV VITE_WEB3FORMS_KEY=$VITE_WEB3FORMS_KEY
+RUN npm run build
+
+# ---- serve ----
 FROM nginx:alpine
 
 COPY dist /usr/share/nginx/html
