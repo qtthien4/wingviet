@@ -7,8 +7,8 @@
   --c5: #fff;
   --container: 1240px;
   --inner: 1024px;
-  --font-body: 'Poppins', sans-serif;
-  --font-serif: 'Noto Serif', serif;
+  --font-body: 'Poppins', system-ui, sans-serif;
+  --font-serif: 'Noto Serif', Georgia, serif;
 }
 
 * { box-sizing: border-box; margin: 0; padding: 0; }
